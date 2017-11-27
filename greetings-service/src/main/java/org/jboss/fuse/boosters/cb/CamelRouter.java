@@ -16,8 +16,8 @@ public class CamelRouter extends RouteBuilder {
 
         // @formatter:off
         restConfiguration()
-            .component("undertow")
-            .bindingMode(RestBindingMode.json).host("0.0.0.0").port(8081);
+            .component("servlet")
+            .bindingMode(RestBindingMode.json);
         
         rest("/greetings").description("Greetings REST service")
             .consumes("application/json")
@@ -29,13 +29,16 @@ public class CamelRouter extends RouteBuilder {
 
         from("direct:greetingsImpl")
             .streamCaching()
-            .log(" Client request: ${body}")
             .hystrix()
                 // see application.properties how hystrix is configured
-                .to("undertow:http://localhost:8080/name")
+                .log(" Try to call name Service")
+                .to("http://localhost:8081/name?bridgeEndpoint=true")
+                .log(" Successfully called name Service")
             .onFallback()
                 // we use a fallback without network that provides a repsonse message immediately
+                .log(" We are falling back!!!!")
                 .transform().simple("{ name: \"default fallback\" }")
+            .end()
             .to("bean:greetingsService?method=getGreetings");     
         // @formatter:on
     }

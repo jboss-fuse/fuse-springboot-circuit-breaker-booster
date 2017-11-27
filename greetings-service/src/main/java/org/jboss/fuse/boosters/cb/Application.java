@@ -16,12 +16,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public HystrixEventStreamServlet hystrixServlet() {
-        return new HystrixEventStreamServlet();
-    }
-
-    @Bean
+    @Bean(name="hystrixEventStreamServlet")
     public ServletRegistrationBean servletRegistrationBean() {
         return new ServletRegistrationBean(new HystrixEventStreamServlet(), "/hystrix.stream");
     }

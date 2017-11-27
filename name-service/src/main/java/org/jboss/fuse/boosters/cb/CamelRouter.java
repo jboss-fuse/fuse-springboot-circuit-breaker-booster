@@ -17,7 +17,7 @@ public class CamelRouter extends RouteBuilder {
         // @formatter:off
         restConfiguration()
             .component("undertow")
-            .bindingMode(RestBindingMode.json).host("0.0.0.0").port(8080);
+            .bindingMode(RestBindingMode.json).host("0.0.0.0").port(8081);
         
         rest("/name").description("Name REST service")
             .consumes("application/json")
