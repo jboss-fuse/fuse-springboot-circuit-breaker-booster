@@ -155,7 +155,7 @@
     </pluginRepositories>
 
     <modules>
-        <!-- <module>greetings-service</module> -->
+        <module>greetings-service</module>
         <module>name-service</module>
     </modules>
 </project>
