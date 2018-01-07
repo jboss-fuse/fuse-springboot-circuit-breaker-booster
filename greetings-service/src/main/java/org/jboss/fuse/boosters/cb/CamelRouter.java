@@ -5,7 +5,7 @@ import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.stereotype.Component;
 
 /**
- * A simple Camel REST DSL route that implement the name service.
+ * A simple Camel REST DSL route that implement the greetings service.
  * 
  */
 @Component
@@ -32,7 +32,7 @@ public class CamelRouter extends RouteBuilder {
             .hystrix()
                 // see application.properties how hystrix is configured
                 .log(" Try to call name Service")
-                .to("http://localhost:8081/name?bridgeEndpoint=true")
+                .to("http://localhost:8081/camel/name?bridgeEndpoint=true")
                 .log(" Successfully called name Service")
             .onFallback()
                 // we use a fallback without network that provides a repsonse message immediately

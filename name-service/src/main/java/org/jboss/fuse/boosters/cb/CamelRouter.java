@@ -2,6 +2,7 @@ package org.jboss.fuse.boosters.cb;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,8 +17,8 @@ public class CamelRouter extends RouteBuilder {
 
         // @formatter:off
         restConfiguration()
-            .component("undertow")
-            .bindingMode(RestBindingMode.json).host("0.0.0.0").port(8081);
+            .component("servlet")
+            .bindingMode(RestBindingMode.json);
         
         rest("/name").description("Name REST service")
             .consumes("application/json")
@@ -26,7 +27,6 @@ public class CamelRouter extends RouteBuilder {
             .get().description("Generate a Name").outType(Name.class)
                 .responseMessage().code(200).endResponseMessage()
                 .to("bean:nameService?method=getName");
-
         // @formatter:on
     }
 
