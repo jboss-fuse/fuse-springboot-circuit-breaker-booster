@@ -39,18 +39,34 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: fuse-spring-boot-circuit-breaker-greeting
-  spec: {}
+    name: fis-java-openshift
+  spec:
+    tags:
+    - name: "1.0"
+      annotations:
+        description: JBoss Fuse Integration Services 1.0 Java S2I images.
+        iconClass: icon-jboss
+        supports: 'jboss-fuse:6.2.1,java:8,xpaas:1.2'
+        tags: 'builder,jboss-fuse,java,xpaas,hidden'
+        version: '1.0'
+      from:
+        kind: DockerImage
+        name: 'registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:1.0'
+    - name: "2.0"
+      annotations:
+        description: JBoss Fuse Integration Services 2.0 Java S2I images.
+        iconClass: icon-jboss
+        supports: 'jboss-fuse:6.3.0,java:8,xpaas:1.2'
+        tags: 'builder,jboss-fuse,java,xpaas'
+        version: '2.0'
+      from:
+        kind: DockerImage
+        name: 'registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:2.0'
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: runtime-greeting
-  spec:
-    tags:
-    - name: latest
-      from:
-        kind: DockerImage
-        name: registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
+    name: fuse-spring-boot-circuit-breaker-greeting
+  spec: {}
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -62,27 +78,31 @@ objects:
         name: fuse-spring-boot-circuit-breaker-greeting:1
     postCommit: {}
     resources: {}
+    runPolicy: Serial
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
-      #contextDir: ${SOURCE_REPOSITORY_DIR}
+        #contextDir: ${SOURCE_REPOSITORY_DIR}
       type: Git
     strategy:
       sourceStrategy:
+        env:
+          - name: BUILD_LOGLEVEL
+            value: '5'
+          - name: MAVEN_ARGS_APPEND
+            value: "-pl ${SOURCE_REPOSITORY_DIR}"
+          - name: ARTIFACT_DIR
+            value: "${SOURCE_REPOSITORY_DIR}/target"
+          - name: MAVEN_MIRROR_URL
+            value: "${MAVEN_MIRROR_URL}"
+          - name: ARTIFACT_COPY_ARGS
+            value: "${ARTIFACT_COPY_ARGS}"
+        forcePull: true
         from:
           kind: ImageStreamTag
-          name: runtime-greeting:latest
+          name: fis-java-openshift:2.0
         incremental: true
-        env:
-        - name: MAVEN_ARGS_APPEND
-          value: "-pl ${SOURCE_REPOSITORY_DIR}"
-        - name: ARTIFACT_DIR
-          value: "${SOURCE_REPOSITORY_DIR}/target"
-        - name: MAVEN_MIRROR_URL
-          value: "${MAVEN_MIRROR_URL}"
-        - name: ARTIFACT_COPY_ARGS
-          value: "${ARTIFACT_COPY_ARGS}"
       type: Source
     triggers:
     - github:
