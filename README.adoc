@@ -1,3 +1,58 @@
-# fuse-springboot-circuit-breaker-booster
+= Circuit Breaker - Fuse [Spring Boot] Booster
 
-A circuit breaker booster for launch.openshift.io for fuse-springboot runtime.
+IMPORTANT: This runs best when deployed to OpenShift in order to use the circuit breaker functionality. For more details on using this booster with a single-node OpenShift cluster, CI/CD deployments, as well as the rest of the runtime, see the link:http://appdev.openshift.io/docs/spring-boot-runtime.html[Spring Boot Runtime Guide].
+
+IMPORTANT: This booster requires Java 8 JDK or greater and Maven 3.3.x or greater.
+
+IMPORTANT: This booster can run in 3 modes: standalone on your machine, on your Single-node OpenShift Cluster and directly deployed by link:http://launch.openshift.io[]
+
+IMPORTANT: As part of the process of creating this booster, launch.openshift.io set up a project with a CI/CD deployment of this booster. You can see the status of this deployment in your Single-node OpenShift Cluster or OpenShift Online Web Console.
+
+== Running the Booster standalone on your machine
+You can also run this booster as a standalone project directly:
+
+. Obtain the project and enter the project's directory
+. Build the project:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ mvn clean package
+----
+. In *2 separate console* run the 2 services:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ cd name-service
+$ mvn spring-boot:run
+----
+and
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ cd greetings-service
+$ mvn spring-boot:run
+----
+. Follow the instructions visiting link:http://localhost:8080[]
+
+== Running the Booster on a Single-node OpenShift Cluster
+If you have a single-node OpenShift cluster, such as Minishift or the Red Hat Container Development Kit, link:http://appdev.openshift.io/docs/minishift-installation.html[installed and running], you can also deploy your booster there. A single-node OpenShift cluster provides you with access to a cloud environment that is similar to a production environment.
+
+To deploy your booster to a running single-node OpenShift cluster:
+
+. Log in and create your project.
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ unzip your project and cd in the project main directory
+
+$ oc login -u developer -p developer
+
+$ oc new-project MY_PROJECT_NAME
+
+$ mvn clean fabric8:deploy -Popenshift
+----
+
+== Running the Booster on launch.openshift.io
+You can obtain this project directly from link:http://launch.openshift.io[]:
+ . Visit link:http://launch.openshift.io[]
+ . Follow the instructions to download a zip of the project or directly deploy it on  Openshift Online.
