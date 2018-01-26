@@ -37,6 +37,19 @@ parameters:
   required: false
 objects:
 - apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: config-fuse-spring-boot-circuit-breaker-name
+  data:
+    application.properties: |-
+      server.port=8080
+      # disable all management enpoints except health
+      endpoints.enabled = false
+      endpoints.health.enabled = true
+      management.health.defaults.enabled=false
+      camel.health.enabled=false
+      camel.health.indicator.enabled=true
+- apiVersion: v1
   kind: ImageStream
   metadata:
     name: fis-java-openshift
@@ -164,6 +177,10 @@ objects:
           version: "1"
           group: io.openshift.booster
       spec:
+        volumes:
+        - name: config-volume
+          configMap:
+            name: config-fuse-spring-boot-circuit-breaker-name
         containers:
         - env:
           - name: KUBERNETES_NAMESPACE
@@ -179,6 +196,10 @@ objects:
               scheme: HTTP
             initialDelaySeconds: 180
           name: spring-boot
+          volumeMounts:
+            - name: config-volume
+              mountPath: /deployments/application.properties
+              subPath: application.properties
           ports:
           - containerPort: 8080
             name: http

@@ -37,6 +37,29 @@ parameters:
   required: false
 objects:
 - apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: config-fuse-spring-boot-circuit-breaker-greeting
+  data:
+    application.properties: |-
+      server.port=8080
+      nameService.host=${FUSE_SPRING_BOOT_CIRCUIT_BREAKER_NAME_SERVICE_HOST}
+      nameService.port=${FUSE_SPRING_BOOT_CIRCUIT_BREAKER_NAME_SERVICE_PORT}
+      # configure hystrix
+      # when we have more than 5 requests per 10 seconds that 50%+ fails
+      # then open circuit and call fallback immediately
+      camel.hystrix.circuit-breaker-request-volume-threshold=5
+      camel.hystrix.circuit-breaker-error-threshold-percentage=50
+      camel.hystrix.metrics-rolling-percentile-window-in-milliseconds=10000
+      # hystrix logging
+      #logging.level.org.apache.camel.component.hystrix.processor=DEBUG
+      # disable all management enpoints except health
+      endpoints.enabled = false
+      endpoints.health.enabled = true
+      management.health.defaults.enabled=false
+      camel.health.enabled=false
+      camel.health.indicator.enabled=true
+- apiVersion: v1
   kind: ImageStream
   metadata:
     name: fis-java-openshift
@@ -164,6 +187,10 @@ objects:
           version: "1"
           group: io.openshift.booster
       spec:
+        volumes:
+        - name: config-volume
+          configMap:
+            name: config-fuse-spring-boot-circuit-breaker-greeting
         containers:
         - env:
           - name: KUBERNETES_NAMESPACE
@@ -179,6 +206,10 @@ objects:
               scheme: HTTP
             initialDelaySeconds: 180
           name: spring-boot
+          volumeMounts:
+            - name: config-volume
+              mountPath: /deployments/application.properties
+              subPath: application.properties
           ports:
           - containerPort: 8080
             name: http

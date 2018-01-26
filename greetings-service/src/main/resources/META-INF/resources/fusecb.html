@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Circuit Breaker Mission - Fuse [Spring Boot]</title>
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		  crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+
+	<div>
+		<h1>Circuit Breaker Mission - Fuse [Spring Boot]</h1>
+		<p class="lead">
+			Cloud applications are often comprised of many services. And between those services there often can be many interactions.
+			But even if some of those services fail or are unavailable, we may want to offer an alternative response to an error condition,
+			that it does not increase load on service in, which is unavailable because of high load. And to achieve this, we need a generic
+			mechanism over the failed or unavailable service to service communication, which can quickly and easily determine that the services
+			are not functioning properly, hence can either return a default result or fail quickly and gracefully with enough information about
+			the current failure. This mechanism is called circuit breaker.
+		</p>
+		<p class="lead">
+			This page is already invoking the <code>greetings service</code> (which is backed by <strong>Apache Camel</strong>). This service uses a <code>name
+			service</code>. The invocations are protected by a circuit breaker using <strong>camel-hystrix</strong> component.
+			You can stop, start and clear the calls to <code>greetings service</code> and monitor the state of the circuit breaker using this
+			<a class="btn btn-default" href="/monitor/monitor.html?stream=/hystrix.stream&title=greetings-service" target="_blank">dashboard</a>.
+			Now you can try to stop the <code>name service</code>
+			by terminating the process or by downscaling the pod number to 0 and notice the output change and the circuit breaker status changing.
+		</p>
+
+		<div class="row">
+			<h2>Greeting service</h2>
+			<form class="form-inline">
+				<button id="stop" type="submit" class="btn btn-primary">Stop</button>
+				<button id="start" type="submit" class="btn btn-primary">Start</button>
+				<button id="clear" type="submit" class="btn btn-success">Clear</button>
+			</form>
+			<h3>Results:</h3>
+			<pre style="min-height:20em;"><code id="greetings-result"></code></pre>
+		</div>
+
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+    	$(document).ready(function() {
+            var started=true;
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function callGretingsService() {
+                while (started) {
+					$.getJSON("/camel/greetings", function (res) {
+						$("#greetings-result").prepend(JSON.stringify(res) + "\n");
+					});
+                    await sleep(1000);
+            	}
+            }
+            $("#clear").click(function(e) {
+                $("#greetings-result").html("");
+                e.preventDefault();
+            });
+            $("#start").click(async function(e) {
+                started=false;
+                await sleep(1000);
+                started=true;
+                e.preventDefault();
+                callGretingsService();
+            });
+            $("#stop").click(function(e) {
+                started=false;
+                e.preventDefault();
+            });
+
+			callGretingsService();
+        });
+	</script>
+</div>
+</body>
+</html>

@@ -2,6 +2,7 @@ package org.jboss.fuse.boosters.cb;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +11,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CamelRouter extends RouteBuilder {
+
+    @Value("${nameService.host}")
+    String nameServiceHost;
+
+    @Value("${nameService.port}")
+    String nameServicePort;
+
 
     @Override
     public void configure() throws Exception {
@@ -27,12 +35,12 @@ public class CamelRouter extends RouteBuilder {
                 .responseMessage().code(200).endResponseMessage()
                 .to("direct:greetingsImpl");
 
-        from("direct:greetingsImpl")
+        from("direct:greetingsImpl").description("Greetings REST service implementation route")
             .streamCaching()
-            .hystrix()
+            .hystrix().id("CamelHystrix")
                 // see application.properties how hystrix is configured
                 .log(" Try to call name Service")
-                .to("http://localhost:8081/camel/name?bridgeEndpoint=true")
+                .to("http://"+nameServiceHost+":"+nameServicePort+"/camel/name?bridgeEndpoint=true")
                 .log(" Successfully called name Service")
             .onFallback()
                 // we use a fallback without network that provides a repsonse message immediately
