@@ -8,7 +8,7 @@
     <version>7.0.0.redhat-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>JBoss Fuse :: Boosters :: Springboot :: Circuit Braker</name>
+    <name>JBoss Fuse :: Boosters :: Springboot :: Circuit Breaker</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
