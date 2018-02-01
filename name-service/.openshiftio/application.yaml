@@ -43,7 +43,7 @@ objects:
   data:
     application.properties: |-
       server.port=8080
-      # disable all management enpoints except health
+      # disable all management endpoints except health
       endpoints.enabled = false
       endpoints.health.enabled = true
       management.health.defaults.enabled=false
