@@ -1,4 +1,4 @@
-Resources under /static are just a client only stripped down version of hystrix-dasboard,
+Resources under /static are just a client only stripped down version of hystrix-dashboard,
 to upgrade/maintain this just:
 1) copy form hystrix-dashboard/tree/master/src/main/webapp in to greetings-service/src/main/resources/static
 2) remove WEB-INF dir, index.css and index.html
