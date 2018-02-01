@@ -84,7 +84,7 @@
 		};
 
 		/**
-		 * Pre process the data before displying in the UI. 
+		 * Pre process the data before displyaing in the UI. 
 		 * e.g   Get Averages from sums, do rate calculation etc. 
 		 */
 		function preProcessData(data) {
