@@ -55,4 +55,4 @@ $ mvn clean fabric8:deploy -Popenshift
 == Running the Booster on launch.openshift.io
 You can obtain this project directly from link:http://launch.openshift.io[]:
  . Visit link:http://launch.openshift.io[]
- . Follow the instructions to download a zip of the project or directly deploy it on  Openshift Online.
+ . Follow the instructions to download a zip of the project or directly deploy it on  OpenShift Online.
