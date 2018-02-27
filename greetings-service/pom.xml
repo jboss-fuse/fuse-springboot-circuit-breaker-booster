@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.jboss.fuse.boosters</groupId>
+        <groupId>com.redhat.fuse.boosters</groupId>
         <artifactId>fuse-springboot-circuit-breaker-booster-parent</artifactId>
         <version>7.0.0.redhat-SNAPSHOT</version>
     </parent>
 
     <artifactId>greetings-service</artifactId>
 
-    <name>JBoss Fuse :: Boosters :: Springboot :: Circuit Braker :: Greetings service</name>
+    <name>Fuse :: Boosters :: Springboot :: Circuit Braker :: Greetings service</name>
 
     <properties>
 
@@ -109,7 +109,6 @@
                     <plugin>
                         <groupId>io.fabric8</groupId>
                         <artifactId>fabric8-maven-plugin</artifactId>
-                        <version>3.5.31</version>
                         <executions>
                             <execution>
                                 <goals>

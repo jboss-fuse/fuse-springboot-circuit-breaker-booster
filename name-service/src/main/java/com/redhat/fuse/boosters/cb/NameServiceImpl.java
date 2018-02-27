@@ -1,4 +1,4 @@
-package org.jboss.fuse.boosters.cb;
+package com.redhat.fuse.boosters.cb;
 
 import org.springframework.stereotype.Service;
 

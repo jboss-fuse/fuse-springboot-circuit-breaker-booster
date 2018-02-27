@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: greetings-service
+data:
+  application.properties: |-
+    server.port=8080
+    nameService.host=${NAME_SERVICE_SERVICE_HOST}
+    nameService.port=${NAME_SERVICE_SERVICE_PORT}
+    # configure hystrix
+    # when we have more than 5 requests per 10 seconds that 50%+ fails
+    # then open circuit and call fallback immediately
+    camel.hystrix.circuit-breaker-request-volume-threshold=5
+    camel.hystrix.circuit-breaker-error-threshold-percentage=50
+    camel.hystrix.metrics-rolling-percentile-window-in-milliseconds=10000
+    # hystrix logging
+    #logging.level.org.apache.camel.component.hystrix.processor=DEBUG
+    # disable all management enpoints except health
+    endpoints.enabled = false
+    endpoints.health.enabled = true
+    management.health.defaults.enabled=false
+    camel.health.enabled=false
+    camel.health.indicator.enabled=true

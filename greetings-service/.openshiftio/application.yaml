@@ -94,11 +94,15 @@ objects:
   kind: BuildConfig
   metadata:
     name: fuse-spring-boot-circuit-breaker-greeting
+    labels:
+      app: fuse-spring-boot-circuit-breaker-name
+      group: com.redhat.fuse.boosters
+      provider: fabric8
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: fuse-spring-boot-circuit-breaker-greeting:1
+        name: fuse-spring-boot-circuit-breaker-greeting:latest
     postCommit: {}
     resources: {}
     runPolicy: Serial
@@ -146,8 +150,7 @@ objects:
       expose: "true"
       app: fuse-spring-boot-circuit-breaker-greeting
       provider: fabric8
-      version: "1"
-      group: io.openshift.booster
+      group: com.redhat.fuse.boosters
     name: fuse-spring-boot-circuit-breaker-greeting
   spec:
     ports:
@@ -158,15 +161,14 @@ objects:
     selector:
       app: fuse-spring-boot-circuit-breaker-greeting
       provider: fabric8
-      group: io.openshift.booster
+      group: com.redhat.fuse.boosters
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
       app: fuse-spring-boot-circuit-breaker-greeting
       provider: fabric8
-      version: "1"
-      group: io.openshift.booster
+      group: com.redhat.fuse.boosters
     name: fuse-spring-boot-circuit-breaker-greeting
   spec:
     replicas: 1
@@ -174,7 +176,7 @@ objects:
     selector:
       app: fuse-spring-boot-circuit-breaker-greeting
       provider: fabric8
-      group: io.openshift.booster
+      group: com.redhat.fuse.boosters
     strategy:
       rollingParams:
         timeoutSeconds: 3600
@@ -184,8 +186,7 @@ objects:
         labels:
           app: fuse-spring-boot-circuit-breaker-greeting
           provider: fabric8
-          version: "1"
-          group: io.openshift.booster
+          group: com.redhat.fuse.boosters
       spec:
         volumes:
         - name: config-volume
@@ -197,7 +198,7 @@ objects:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-          image: fuse-spring-boot-circuit-breaker-greeting:1
+          image: fuse-spring-boot-circuit-breaker-greeting:latest
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -205,7 +206,7 @@ objects:
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 180
-          name: spring-boot
+          name: greetings-service
           volumeMounts:
             - name: config-volume
               mountPath: /deployments/application.properties
@@ -233,10 +234,10 @@ objects:
     - imageChangeParams:
         automatic: true
         containerNames:
-        - spring-boot
+        - greetings-service
         from:
           kind: ImageStreamTag
-          name: fuse-spring-boot-circuit-breaker-greeting:1
+          name: fuse-spring-boot-circuit-breaker-greeting:latest
       type: ImageChange
 - apiVersion: v1
   kind: Route
@@ -244,8 +245,7 @@ objects:
     labels:
       app: fuse-spring-boot-circuit-breaker-greeting
       provider: fabric8
-      version: "1"
-      group: io.openshift.booster
+      group: com.redhat.fuse.boosters
     name: fuse-spring-boot-circuit-breaker-greeting
   spec:
     port:

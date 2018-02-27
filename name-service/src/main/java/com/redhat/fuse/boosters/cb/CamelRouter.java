@@ -1,8 +1,7 @@
-package org.jboss.fuse.boosters.cb;
+package com.redhat.fuse.boosters.cb;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 /**
