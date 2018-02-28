@@ -43,8 +43,8 @@ objects:
   data:
     application.properties: |-
       server.port=8080
-      nameService.host=${FUSE_SPRING_BOOT_CIRCUIT_BREAKER_NAME_SERVICE_HOST}
-      nameService.port=${FUSE_SPRING_BOOT_CIRCUIT_BREAKER_NAME_SERVICE_PORT}
+      nameService.host=${NAME_SERVICE_SERVICE_HOST}
+      nameService.port=${NAME_SERVICE_SERVICE_PORT}
       # configure hystrix
       # when we have more than 5 requests per 10 seconds that 50%+ fails
       # then open circuit and call fallback immediately
