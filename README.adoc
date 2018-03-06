@@ -91,7 +91,7 @@ Wait until you can see that the pods for the `name-service` application and for 
 Click on the URL to access the greetings service application and follow the instructions on that page.
 
 
-== Running the booster on {launchURL}
+== Running the booster on OpenShift Online
 You can deploy the circuit breaker booster directly to OpenShift Online when you create the project at link:{launchURL}[].
 
 . Visit link:{launchURL}[].
