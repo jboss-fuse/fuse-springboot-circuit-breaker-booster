@@ -57,7 +57,8 @@ If you have a single-node OpenShift cluster, such as Minishift or the Red Hat Co
 A single-node OpenShift cluster provides you with access to a cloud environment that is similar to a production environment.
 
 IMPORTANT: You need to run this example on Container Development Kit 3.3 or OpenShift 3.7.
-Both of these products have suitable Fuse images pre-installed.
+Both of these products have suitable Fuse images pre-installed. 
+If you run it in an evironment where those images are not preinstalled follow the steps described in <<single-node-without-preinstalled-images>>.
 
 To deploy your booster to a running single-node OpenShift cluster:
 
@@ -87,9 +88,48 @@ $ mvn clean -DskipTests fabric8:deploy -Popenshift
 . In your browser, navigate to the `MY_PROJECT_NAME` project in the OpenShift console.
 Wait until you can see that the pods for the `name-service` application and for the `greetings-service` application have both started up.
 
-. Just above the entry for the `greetings-service` application on the `Overview` page, there is a URL of the form `http://greetings-service-test.OPENSHIFT_IP_ADDR.nip.io`.
+. Just above the entry for the `greetings-service` application on the `Overview` page, there is a URL of the form `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
 Click on the URL to access the greetings service application and follow the instructions on that page.
 
+[#single-node-without-preinstalled-images]
+=== Running the booster on a single-node OpenShift cluster without preinstalled images
+To deploy your booster to a running single-node OpenShift cluster without preinstalled images:
+
+. Download the project and extract the archive on your local filesystem.
+
+. Log in to your OpenShift cluster:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ oc login -u developer -p developer
+----
+
+. Create a new OpenShift project for the booster:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ oc new-project MY_PROJECT_NAME
+----
+
+. Import base images in your newly created project (MY_PROJECT_NAME):
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ oc import-image fis-java-openshift:2.0 --from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:2.0 --confirm
+----
+
+. Build and deploy the project to the OpenShift cluster:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ mvn clean -DskipTests fabric8:deploy -Popenshift -Dfabric8.generator.fromMode=istag -Dfabric8.generator.from=MY_PROJECT_NAME/fis-java-openshift:2.0
+----
+
+. In your browser, navigate to the `MY_PROJECT_NAME` project in the OpenShift console.
+Wait until you can see that the pods for the `name-service` application and for the `greetings-service` application have both started up.
+
+. Just above the entry for the `greetings-service` application on the `Overview` page, there is a URL of the form `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
+Click on the URL to access the greetings service application and follow the instructions on that page.
 
 == Running the booster on OpenShift Online
 You can deploy the circuit breaker booster directly to OpenShift Online when you create the project at link:{launchURL}[].
