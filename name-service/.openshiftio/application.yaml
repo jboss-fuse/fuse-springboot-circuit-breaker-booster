@@ -39,29 +39,16 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: fis-java-openshift
+    name: s2i-java
   spec:
     tags:
-    - name: "1.0"
+    - name: "2.1"
       annotations:
-        description: JBoss Fuse Integration Services 1.0 Java S2I images.
-        iconClass: icon-jboss
-        supports: 'jboss-fuse:6.2.1,java:8,xpaas:1.2'
-        tags: 'builder,jboss-fuse,java,xpaas,hidden'
-        version: '1.0'
+        description: Fabric8 Java S2I images.
+        version: '2.1'
       from:
         kind: DockerImage
-        name: 'registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:1.0'
-    - name: "2.0"
-      annotations:
-        description: JBoss Fuse Integration Services 2.0 Java S2I images.
-        iconClass: icon-jboss
-        supports: 'jboss-fuse:6.3.0,java:8,xpaas:1.2'
-        tags: 'builder,jboss-fuse,java,xpaas'
-        version: '2.0'
-      from:
-        kind: DockerImage
-        name: 'registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:2.0'
+        name: 'fabric8/s2i-java'
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -105,7 +92,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: fis-java-openshift:2.0
+          name: s2i-java:2.1
         incremental: true
       type: Source
     triggers:
