@@ -35,20 +35,28 @@ parameters:
   description: Maven Nexus Repository to be used during build phase
   displayName:
   required: false
+- name: BUILDER_IMAGE_NAME
+  description: Name of the image to use as a builder image
+  displayName: Builder Image Name
+  value: 'fabric8/s2i-java:latest'
+  required: true
 objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: s2i-java
+    name: fuse-java-openshift
   spec:
     tags:
-    - name: "2.1"
+    - name: "latest"
       annotations:
         description: Fabric8 Java S2I images.
-        version: '2.1'
+        iconClass: icon-jboss
+        supports: 'jboss-fuse:7,java:8,xpaas:1.2'
+        tags: 'builder,jboss-fuse,java,xpaas,hidden'
+        version: '1.0'
       from:
         kind: DockerImage
-        name: 'fabric8/s2i-java'
+        name: ${BUILDER_IMAGE_NAME}
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -92,7 +100,7 @@ objects:
         forcePull: true
         from:
           kind: ImageStreamTag
-          name: s2i-java:2.1
+          name: fuse-java-openshift:latest
         incremental: true
       type: Source
     triggers:
