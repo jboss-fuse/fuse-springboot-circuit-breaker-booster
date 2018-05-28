@@ -14,20 +14,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
-        <camel.version>2.21.0.000033-fuse-000001-redhat-1</camel.version>
-        <fis.version>2.3.7.fuse-000036-redhat-2</fis.version>
+        <spring-boot.version>1.5.12.RELEASE</spring-boot.version>
+        <camel.version>2.21.0.fuse-000077-redhat-1</camel.version>
+        <fuse.bom.version>7.0.0.fuse-000027-redhat-1</fuse.bom.version>
 
         <!-- versions of Maven plugins -->
-        <fmp.version>3.5.32.fuse-000040-redhat-2</fmp.version>
+        <fmp.version>3.5.33.fuse-000067-redhat-1</fmp.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-project-bom-camel-spring-boot</artifactId>
-                <version>${fis.version}</version>
+                <groupId>org.jboss.redhat-fuse</groupId>
+                <artifactId>fuse-springboot-bom</artifactId>
+                <version>${fuse.bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

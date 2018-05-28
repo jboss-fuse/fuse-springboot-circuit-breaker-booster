@@ -1,4 +1,5 @@
 :launchURL: https://developers.redhat.com/launch
+:image: registry.access.redhat.com/fuse7/fuse-java-openshift:1.0
 
 = Circuit Breaker - Fuse Booster
 
@@ -115,7 +116,7 @@ $ oc new-project MY_PROJECT_NAME
 +
 [source,bash,options="nowrap",subs="attributes+"]
 ----
-$ oc import-image fis-java-openshift:2.0 --from=registry.access.redhat.com/jboss-fuse-6/fis-java-openshift:2.0 --confirm
+$ oc import-image fis-java-openshift:2.0 --from={image} --confirm
 ----
 
 . Build and deploy the project to the OpenShift cluster:
