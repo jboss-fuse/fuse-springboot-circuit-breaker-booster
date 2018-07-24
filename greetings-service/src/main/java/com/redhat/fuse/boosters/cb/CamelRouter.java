@@ -43,7 +43,7 @@ public class CamelRouter extends RouteBuilder {
                 .to("http://"+nameServiceHost+":"+nameServicePort+"/camel/name?bridgeEndpoint=true")
                 .log(" Successfully called name Service")
             .onFallback()
-                // we use a fallback without network that provides a repsonse message immediately
+                // we use a fallback without network that provides a response message immediately
                 .log(" We are falling back!!!!")
                 .transform().simple("{ name: \"default fallback\" }")
             .end()

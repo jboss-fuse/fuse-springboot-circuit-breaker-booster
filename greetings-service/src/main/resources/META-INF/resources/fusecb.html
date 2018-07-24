@@ -49,7 +49,7 @@
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
-            async function callGretingsService() {
+            async function callGreetingsService() {
                 while (started) {
 					$.getJSON("/camel/greetings", function (res) {
 						$("#greetings-result").prepend(JSON.stringify(res) + "\n");
@@ -66,14 +66,14 @@
                 await sleep(1000);
                 started=true;
                 e.preventDefault();
-                callGretingsService();
+                callGreetingsService();
             });
             $("#stop").click(function(e) {
                 started=false;
                 e.preventDefault();
             });
 
-			callGretingsService();
+			callGreetingsService();
         });
 	</script>
 </div>
