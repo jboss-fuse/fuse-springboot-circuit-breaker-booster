@@ -13,4 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-boosterBuild()
+boosterBuild("registry.access.redhat.com/fuse7/fuse-java-openshift:1.0")
