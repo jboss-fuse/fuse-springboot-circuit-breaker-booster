@@ -15,11 +15,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <spring-boot.version>1.5.13.RELEASE</spring-boot.version>
-        <camel.version>2.21.0.fuse-000077-redhat-1</camel.version>
-        <fuse.bom.version>7.0.0.fuse-000027-redhat-1</fuse.bom.version>
+        <fuse.bom.version>7.0.1.fuse-000008-redhat-4</fuse.bom.version>
 
         <!-- versions of Maven plugins -->
-        <fmp.version>3.5.33.fuse-000067-redhat-1</fmp.version>
+        <fmp.version>3.5.33.fuse-000089-redhat-4</fmp.version>
 
         <!-- version of Arquillian -->
         <arquillian.cube.version>1.17.1</arquillian.cube.version>
@@ -32,13 +31,6 @@
                 <groupId>org.jboss.redhat-fuse</groupId>
                 <artifactId>fuse-springboot-bom</artifactId>
                 <version>${fuse.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-spring-boot-dependencies</artifactId>
-                <version>${camel.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
