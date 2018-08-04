@@ -18,55 +18,7 @@
     </properties>
 
     <dependencies>
-        <!--&lt;!&ndash; Spring Boot &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-web</artifactId>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-undertow</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash; Camel &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.camel</groupId>-->
-            <!--<artifactId>camel-spring-boot-starter</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.camel</groupId>-->
-            <!--<artifactId>camel-undertow-starter</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.camel</groupId>-->
-            <!--<artifactId>camel-servlet-starter</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.camel</groupId>-->
-            <!--<artifactId>camel-jackson-starter</artifactId>-->
-        <!--</dependency>-->
-
         <!-- Test -->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-test</artifactId>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.camel</groupId>-->
-            <!--<artifactId>camel-test</artifactId>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.arquillian.cube</groupId>
             <artifactId>arquillian-cube-requirement</artifactId>
