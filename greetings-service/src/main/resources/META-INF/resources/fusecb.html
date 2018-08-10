@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Circuit Breaker Mission - Red Hat Fuse</title>
+	<title>Circuit Breaker - Red Hat Fuse</title>
 	<link rel="stylesheet"
 		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -12,26 +12,29 @@
 	<div class="container">
 
 	<div>
-		<h1>Circuit Breaker Mission - Red Hat Fuse</h1>
+		<h1>Circuit Breaker - Red Hat Fuse</h1>
 		<p class="lead">
-			Cloud applications are often comprised of many services. And between those services there often can be many interactions.
-			But even if some of those services fail or are unavailable, we may want to offer an alternative response to an error condition,
-			that it does not increase load on service in, which is unavailable because of high load. And to achieve this, we need a generic
-			mechanism over the failed or unavailable service to service communication, which can quickly and easily determine that the services
-			are not functioning properly, hence can either return a default result or fail quickly and gracefully with enough information about
-			the current failure. This mechanism is called circuit breaker.
+			Cloud applications are often comprised of many services. Between those services there can be many interactions.
+			In case a service fails or is unavailable, you can provide an alternative response that handles the error condition without increasing service load. To achieve this, you can implement a circuit breaker. A circuit breaker is a generic mechanism that can quickly and easily determine that a service is not functioning properly and then can either return a default result or a quick and graceful fail notice with detailed information about the failure. 
 		</p>
 		<p class="lead">
-			This page is already invoking the <code>greetings service</code> (which is backed by <strong>Apache Camel</strong>). This service uses a <code>name
-			service</code>. The invocations are protected by a circuit breaker using <strong>camel-hystrix</strong> component.
-			You can stop, start and clear the calls to <code>greetings service</code> and monitor the state of the circuit breaker using this
-			<a class="btn btn-default" href="/monitor/monitor.html?stream=/hystrix.stream&title=greetings-service" target="_blank">dashboard</a>.
-			Now you can try to stop the <code>name service</code>
-			by terminating the process or by downscaling the pod number to 0 and notice the output change and the circuit breaker status changing.
+			When you open this page, it invokes the <code>Greeting Service</code> (which is backed by Apache Camel). This Greeting Service uses a <code>name
+			service</code>. The invocations are protected by a circuit breaker that uses the <strong>camel-hystrix</strong> component.
 		</p>
+		<p class="lead">
+			You can stop, start, and clear the calls to the <code>Greeting Service</code> and monitor the state of the circuit breaker by using the
+			<a class="btn btn-default" href="/monitor/monitor.html?stream=/hystrix.stream&title=greetings-service" target="_blank">Hystrix Monitor dashboard</a>.
+		</p>
+		<p class="lead">To demonstrate the behavior of the circuit breaker when a service becomes unavailable:
+			
+			<ul class="lead">
+				<li>Stop the <code>name service</code> by terminating the process or by downscaling the pod number to 0. </li>
+		<li>Observe the changes in the Greeting Service output and the circuit breaker dashboard. </li>
+	</ul>
+			</p>
 
 		<div class="row">
-			<h2>Greeting service</h2>
+			<h2>Greeting Service</h2>
 			<form class="form-inline">
 				<button id="stop" type="submit" class="btn btn-primary">Stop</button>
 				<button id="start" type="submit" class="btn btn-primary">Start</button>
@@ -72,7 +75,6 @@
                 started=false;
                 e.preventDefault();
             });
-
 			callGreetingsService();
         });
 	</script>

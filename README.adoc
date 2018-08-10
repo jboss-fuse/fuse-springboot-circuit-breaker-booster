@@ -6,62 +6,32 @@
 == Overview
 The Fuse circuit breaker booster consists of two related services:
 
-* A _name service_, which returns a name to greet, and
-* A _greetings service_, which invokes the name service to get a name and then returns the string, `Hello, NAME`.
+* A _name service_ that returns a name to greet.
+* A _greetings service_ that invokes the name service to get a name and then returns the string, `Hello, NAME`.
 
-In this demonstration, the Hystrix circuit breaker is inserted between the greetings service and the name service.
-If the name service becomes unavailable, the greetings service can fall back to an alternative behaviour and respond to the client immediately, instead of blocking while it waits for the name service to restart.
+This booster demonstrates inserting the Hystrix circuit breaker between the greetings service and the name service.
+If the name service becomes unavailable, the circuit breaker instructs the greetings service to follow an alternative behavior and respond to the client immediately, thereby avoiding a blockage during the the time that it takes for the name service to restart.
 
 == Deployment options
 
-This booster can run in the following modes:
+You can run this booster in the following modes:
 
-* Standalone on your machine
 * Single-node OpenShift cluster
 * OpenShift Online at link:{launchURL}[]
+* Standalone on your machine
 
-The most effective way to demonstrate the circuit breaker is to deploy and run the project on OpenShift.
+The most effective way to run this booster is to deploy and run the project on OpenShift.
+
 For more details about running this booster on a single-node OpenShift cluster, CI/CD deployments, as well as the rest of the runtime, see the link:http://appdev.openshift.io/docs/spring-boot-runtime.html[Spring Boot Runtime Guide].
 
-IMPORTANT: This booster requires Java 8 JDK or greater and Maven 3.3.x or greater.
-
-
-== Running the booster standalone on your machine
-You can run this booster as a standalone project on your local machine:
-
-. Download the project and extract the archive on your local filesystem.
-. Build the project:
-+
-[source,bash,options="nowrap",subs="attributes+"]
-----
-$ cd PROJECT_DIR
-$ mvn clean package
-----
-. In two separate shell prompts, run the services as follows:
-+
-[source,bash,options="nowrap",subs="attributes+"]
-----
-$ cd name-service
-$ mvn spring-boot:run -Dserver.port=8081
-----
-and
-+
-[source,bash,options="nowrap",subs="attributes+"]
-----
-$ cd greetings-service
-$ mvn spring-boot:run
-----
-. Visit link:http://localhost:8080[] and follow the instructions on that page.
+IMPORTANT: This booster requires Java 8 JDK or later and Maven 3.3.x or later.
 
 == Running the booster on a single-node OpenShift cluster
-If you have a single-node OpenShift cluster, such as Minishift or the Red Hat Container Development Kit, link:http://appdev.openshift.io/docs/minishift-installation.html[installed and running], you can deploy your booster there.
 A single-node OpenShift cluster provides you with access to a cloud environment that is similar to a production environment.
 
-IMPORTANT: You need to run this example on Container Development Kit 3.3 or OpenShift 3.7.
-Both of these products have suitable Fuse images pre-installed. 
-If you run it in an evironment where those images are not preinstalled follow the steps described in <<single-node-without-preinstalled-images>>.
+If you have a single-node OpenShift cluster, such as Minishift or the Red Hat Container Development Kit, link:http://appdev.openshift.io/docs/minishift-installation.html[installed and running], you can deploy your booster there.
 
-To deploy your booster to a running single-node OpenShift cluster:
+To deploy this booster to a running single-node OpenShift cluster:
 
 . Download the project and extract the archive on your local filesystem.
 
@@ -79,6 +49,13 @@ $ oc login -u developer -p developer
 $ oc new-project MY_PROJECT_NAME
 ----
 
+. Change the directory to the folder that contains the extracted booster application (for example, `my_openshift/fuse-springboot-circuit-breaker-booster-master`) :
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ cd my_openshift/fuse-springboot-circuit-breaker-booster-master
+----
+
 . Build and deploy the project to the OpenShift cluster:
 +
 [source,bash,options="nowrap",subs="attributes+"]
@@ -89,8 +66,9 @@ $ mvn clean -DskipTests fabric8:deploy -Popenshift
 . In your browser, navigate to the `MY_PROJECT_NAME` project in the OpenShift console.
 Wait until you can see that the pods for the `name-service` application and for the `greetings-service` application have both started up.
 
-. Just above the entry for the `greetings-service` application on the `Overview` page, there is a URL of the form `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
-Click on the URL to access the greetings service application and follow the instructions on that page.
+. On the project's `Overview` page, locate the URL for the `fuse-springboot-circuit-breaker-booster` application: `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
+
+. Click the URL to access the greetings service application and then follow the instructions on that page.
 
 [#single-node-without-preinstalled-images]
 === Running the booster on a single-node OpenShift cluster without preinstalled images
@@ -133,10 +111,38 @@ Wait until you can see that the pods for the `name-service` application and for 
 Click on the URL to access the greetings service application and follow the instructions on that page.
 
 == Running the booster on OpenShift Online
-You can deploy the circuit breaker booster directly to OpenShift Online when you create the project at link:{launchURL}[].
 
-. Visit link:{launchURL}[].
+To deploy the circuit breaker booster directly to OpenShift Online when you create the project at link:{launchURL}[]:
+
+. Go to link:{launchURL}[].
 . At the *Deployment step*, select *Use OpenShift Online*.
 . Follow the on-screen instructions to create a new *Circuit Breaker* project using the *Fuse* runtime.
 
-NOTE: As part of the process of creating this booster, link:{launchURL}[] sets up a project with a CI/CD deployment of this booster. You can see the status of this deployment in your Single-node OpenShift Cluster or OpenShift Online Web Console.
+NOTE: As part of the process of creating this booster, link:{launchURL}[] sets up a project with a CI/CD deployment of this booster. You can see the status of this deployment in your single-node OpenShift cluster or OpenShift Online web console.
+
+== Running the booster standalone on your machine
+To run this booster as a standalone project on your local machine:
+
+. Download the project and extract the archive on your local filesystem.
+. Build the project:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ cd PROJECT_DIR
+$ mvn clean package
+----
+. In two separate shell prompts, run the services:
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ cd name-service
+$ mvn spring-boot:run -Dserver.port=8081
+----
++
+[source,bash,options="nowrap",subs="attributes+"]
+----
+$ cd greetings-service
+$ mvn spring-boot:run
+----
+. Go to link:http://localhost:8080[] and then follow the instructions on that page.
+
