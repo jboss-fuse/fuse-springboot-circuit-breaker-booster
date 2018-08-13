@@ -68,7 +68,7 @@ Wait until you can see that the pods for the `name-service` application and for 
 
 . On the project's `Overview` page, locate the URL for the `fuse-springboot-circuit-breaker-booster` application: `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
 
-. Click the URL to access the greetings service application and then follow the instructions on that page.
+. Click the URL to access the Greeting Service application and then follow the instructions on that page.
 
 [#single-node-without-preinstalled-images]
 === Running the booster on a single-node OpenShift cluster without preinstalled images
@@ -107,8 +107,9 @@ $ mvn clean -DskipTests fabric8:deploy -Popenshift -Dfabric8.generator.fromMode=
 . In your browser, navigate to the `MY_PROJECT_NAME` project in the OpenShift console.
 Wait until you can see that the pods for the `name-service` application and for the `greetings-service` application have both started up.
 
-. Just above the entry for the `greetings-service` application on the `Overview` page, there is a URL of the form `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
-Click on the URL to access the greetings service application and follow the instructions on that page.
+. On the project's `Overview` page, locate the URL for the `fuse-springboot-circuit-breaker-booster` application: `http://greetings-service-MY_PROJECT_NAME.OPENSHIFT_IP_ADDR.nip.io`.
+
+. Click the URL to access the Greeting Service application and then follow the instructions on that page.
 
 == Running the booster on OpenShift Online
 
