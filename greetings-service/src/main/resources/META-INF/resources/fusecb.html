@@ -22,14 +22,17 @@
 			service</code>. The invocations are protected by a circuit breaker that uses the <strong>camel-hystrix</strong> component.
 		</p>
 		<p class="lead">
-			You can stop, start, and clear the calls to the <code>Greeting Service</code> and monitor the state of the circuit breaker by using the
+			You can stop, start, and clear the calls to the <code>Greeting Service</code> on this page. 
+		</p>
+		<p class="lead">
+		        To monitor the state of the circuit breaker, use the
 			<a class="btn btn-default" href="/monitor/monitor.html?stream=/hystrix.stream&title=greetings-service" target="_blank">Hystrix Monitor dashboard</a>.
 		</p>
 		<p class="lead">To demonstrate the behavior of the circuit breaker when a service becomes unavailable:
 			
 			<ul class="lead">
-				<li>Stop the <code>name service</code> by terminating the process or by downscaling the pod number to 0. </li>
-		<li>Observe the changes in the Greeting Service output and the circuit breaker dashboard. </li>
+				<li>In the OpenShift console, stop the <code>name service</code> by terminating the process or by downscaling the pod number to 0. </li>
+		<li>Observe the changes below in the Greeting Service output and in the Hystrix Monitor dashboard. </li>
 	</ul>
 			</p>
 
