@@ -6,10 +6,10 @@
 The Fuse circuit breaker booster consists of two related services:
 
 * A _name service_ that returns a name to greet.
-* A _greetings service_ that invokes the name service to get a name and then returns the string, `Hello, NAME`.
+* A _greeting service_ that invokes the name service to get a name and then returns the `Hello, NAME` string.
 
-This booster demonstrates inserting the Hystrix circuit breaker between the greetings service and the name service.
-If the name service becomes unavailable, the circuit breaker instructs the greetings service to follow an alternative behavior and respond to the client immediately, thereby avoiding a blockage during the the time that it takes for the name service to restart.
+This booster demonstrates inserting the Hystrix circuit breaker between the greeting service and the name service.
+If the name service becomes unavailable, the circuit breaker instructs the greeting service to follow an alternative behavior and respond to the client immediately, thereby avoiding a blockage or time out condition while waiting for the name service to restart.
 
 == Deployment options
 
@@ -48,11 +48,11 @@ $ oc login -u developer -p developer
 $ oc new-project MY_PROJECT_NAME
 ----
 
-. Change the directory to the folder that contains the extracted booster application (for example, `my_openshift/fuse-springboot-circuit-breaker-booster-master`) :
+. Change the directory to the folder that contains the extracted booster application (for example, `my_openshift/fuse-springboot-circuit-breaker-booster`) :
 +
 [source,bash,options="nowrap",subs="attributes+"]
 ----
-$ cd my_openshift/fuse-springboot-circuit-breaker-booster-master
+$ cd my_openshift/fuse-springboot-circuit-breaker-booster
 ----
 
 . Build and deploy the project to the OpenShift cluster:
