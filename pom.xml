@@ -52,16 +52,6 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>fabric8-maven-plugin</artifactId>
-                    <version>${fmp.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
             <!-- Core plugins -->
 
@@ -90,6 +80,11 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
             </plugin>
+            <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>fabric8-maven-plugin</artifactId>
+                    <version>${fmp.version}</version>
+                </plugin>
         </plugins>
     </build>
 
