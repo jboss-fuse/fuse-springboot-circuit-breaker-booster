@@ -4,7 +4,7 @@ metadata:
   labels:
     app: greetings-service
     provider: fabric8
-    group: com.redhat.fuse.boosters
+    group: ${project.groupId}
   name: greetings-service
 spec:
   replicas: 1
@@ -12,7 +12,7 @@ spec:
   selector:
     app: greetings-service
     provider: fabric8
-    group: com.redhat.fuse.boosters
+    group: ${project.groupId}
   strategy:
     rollingParams:
       timeoutSeconds: 3600
@@ -22,7 +22,7 @@ spec:
       labels:
         app: greetings-service
         provider: fabric8
-        group: com.redhat.fuse.boosters
+        group: ${project.groupId}
     spec:
       volumes:
       - name: config-volume
