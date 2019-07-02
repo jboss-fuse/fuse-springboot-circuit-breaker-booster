@@ -14,7 +14,7 @@
     <name>Fuse :: Boosters :: Springboot :: Circuit Braker :: Integration Tests</name>
 
     <properties>
-        <openshift.client.version>2.6.3</openshift.client.version>
+        <openshift.client.version>4.1.0</openshift.client.version>
     </properties>
 
     <dependencies>
@@ -44,7 +44,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-standalone</artifactId>
-            <version>${arquillian.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
