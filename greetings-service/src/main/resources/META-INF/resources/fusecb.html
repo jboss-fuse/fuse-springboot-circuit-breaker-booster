@@ -53,20 +53,20 @@ service is running.</p>
 		</div>
 
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
-    	$(document).ready(function() {
+        $(document).ready(function() {
             var started=true;
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
             async function callGreetingsService() {
                 while (started) {
-					$.getJSON("/camel/greetings", function (res) {
-						$("#greetings-result").prepend(JSON.stringify(res) + "\n");
-					});
+                    $.getJSON("/camel/greetings", function (res) {
+                        $("#greetings-result").prepend(JSON.stringify(res) + "\n");
+                    });
                     await sleep(1000);
-            	}
+                }
             }
             $("#clear").click(function(e) {
                 $("#greetings-result").html("");
@@ -83,7 +83,7 @@ service is running.</p>
                 started=false;
                 e.preventDefault();
             });
-			callGreetingsService();
+            callGreetingsService();
         });
 	</script>
 </div>
