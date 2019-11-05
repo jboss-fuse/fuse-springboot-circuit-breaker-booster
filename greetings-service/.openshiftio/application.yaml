@@ -48,6 +48,7 @@ objects:
   data:
     application.properties: |-
       server.port=8080
+      management.endpoints.web.base-path=/
 
       nameService.host=${NAME_SERVICE_SERVICE_HOST}
       nameService.port=${NAME_SERVICE_SERVICE_PORT}
@@ -203,7 +204,7 @@ objects:
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
-              path: /actuator/health
+              path: /health
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 180
@@ -224,7 +225,7 @@ objects:
             protocol: TCP
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /health
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 10
