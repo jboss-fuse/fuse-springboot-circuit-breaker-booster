@@ -5,7 +5,6 @@ metadata:
 data:
   application.properties: |-
     server.port=8080
-    management.endpoints.web.base-path=/
 
     nameService.host=${NAME_SERVICE_SERVICE_HOST}
     nameService.port=${NAME_SERVICE_SERVICE_PORT}
