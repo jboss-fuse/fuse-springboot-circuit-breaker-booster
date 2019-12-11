@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <fuse.bom.version>7.5.0.fuse-750029-redhat-00002</fuse.bom.version>
+        <fuse.bom.version>7.6.0.fuse-760015</fuse.bom.version>
 
         <!-- version of Arquillian -->
         <arquillian.cube.version>1.17.1</arquillian.cube.version>
