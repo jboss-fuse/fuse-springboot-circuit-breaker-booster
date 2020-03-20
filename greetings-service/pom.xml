@@ -11,7 +11,7 @@
 
     <artifactId>greetings-service</artifactId>
 
-    <name>Fuse :: Boosters :: Springboot :: Circuit Braker :: Greetings service</name>
+    <name>Fuse :: Boosters :: Springboot :: Circuit Breaker :: Greetings service</name>
 
     <properties>
 
