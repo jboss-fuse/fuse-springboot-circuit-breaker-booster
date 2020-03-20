@@ -11,7 +11,7 @@
 
     <artifactId>name-service</artifactId>
 
-    <name>Fuse :: Boosters :: Springboot :: Circuit Braker :: Name service</name>
+    <name>Fuse :: Boosters :: Springboot :: Circuit Breaker :: Name service</name>
 
     <properties>
 
