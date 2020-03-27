@@ -38,7 +38,7 @@ parameters:
 - name: BUILDER_IMAGE_NAME
   description: Name of the image to use as a builder image
   displayName: Builder Image Name
-  value: 'registry.access.redhat.com/fuse7/fuse-java-openshift:1.0'
+  value: 'registry.access.redhat.com/fuse7/fuse-java-openshift:1.6'
   required: true
 objects:
 - apiVersion: v1
