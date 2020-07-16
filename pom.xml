@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <fuse.bom.version>7.7.0.fuse-sb2-770011</fuse.bom.version>
+        <fuse.bom.version>7.7.0.fuse-sb2-770010</fuse.bom.version>
     </properties>
 
     <dependencyManagement>
