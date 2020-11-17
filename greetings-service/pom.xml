@@ -11,7 +11,7 @@
 
     <artifactId>greetings-service</artifactId>
 
-    <name>Fuse :: Boosters :: Springboot :: Circuit Braker :: Greetings service</name>
+    <name>Fuse :: Boosters :: Springboot :: Circuit Breaker :: Greetings service</name>
 
     <properties>
 
@@ -78,10 +78,18 @@
     </dependencies>
 
     <build>
+        <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.jboss.redhat-fuse</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

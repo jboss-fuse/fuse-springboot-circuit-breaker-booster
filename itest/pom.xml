@@ -11,7 +11,7 @@
 
     <artifactId>itest</artifactId>
 
-    <name>Fuse :: Boosters :: Springboot :: Circuit Braker :: Integration Tests</name>
+    <name>Fuse :: Boosters :: Springboot :: Circuit Breaker :: Integration Tests</name>
 
     <dependencies>
         <!-- Test -->
