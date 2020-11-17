@@ -26,7 +26,7 @@ public class HttpRequestTest {
 	String defaultResult = "Hello, default fallback";
 	String nameServiceUpResult = "Hello, Jacopo";
 
-	// If the name service is running we get a different value.  Either "default fallabck" or "Jacopo" are acceptable results here
+	// If the name service is running we get a different value.  Either "default fallback" or "Jacopo" are acceptable results here
 	Assert.assertThat(message, CoreMatchers.anyOf(CoreMatchers.is(defaultResult), CoreMatchers.is(nameServiceUpResult)));
     }
 
