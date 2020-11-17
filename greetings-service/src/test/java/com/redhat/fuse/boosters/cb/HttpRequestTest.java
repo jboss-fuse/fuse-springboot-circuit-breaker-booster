@@ -1,5 +1,6 @@
 package com.redhat.fuse.boosters.cb;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +22,12 @@ public class HttpRequestTest {
 
     @Test
     public void greetingsShouldReturnFallbackMessage() throws Exception {
-        Assert.assertEquals( "Hello, default fallback", this.restTemplate.getForObject("http://localhost:" + port + "/camel/greetings", Greetings.class).getGreetings());
+	String message = this.restTemplate.getForObject("http://localhost:" + port + "/camel/greetings", Greetings.class).getGreetings();
+	String defaultResult = "Hello, default fallback";
+	String nameServiceUpResult = "Hello, Jacopo";
+
+	// If the name service is running we get a different value.  Either "default fallabck" or "Jacopo" are acceptable results here
+	Assert.assertThat(message, CoreMatchers.anyOf(CoreMatchers.is(defaultResult), CoreMatchers.is(nameServiceUpResult)));
     }
 
     @Test
