@@ -18,11 +18,12 @@
         <camel.version>2.21.2</camel.version>
 
         <!-- versions of Maven plugins -->
-        <fmp.version>4.3.1</fmp.version>
+        <fmp.version>3.5.40</fmp.version>
 
         <!-- version of Arquillian -->
         <arquillian.cube.version>1.17.1</arquillian.cube.version>
         <arquillian.version>1.4.0.Final</arquillian.version>
+        <openshift.client.version>4.0.3</openshift.client.version>
     </properties>
 
     <dependencyManagement>
