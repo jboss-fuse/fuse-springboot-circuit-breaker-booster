@@ -18,7 +18,7 @@
         <camel.version>2.21.2</camel.version>
 
         <!-- versions of Maven plugins -->
-        <fmp.version>3.5.40</fmp.version>
+        <jkube.version>1.1.1</jkube.version>
 
         <!-- version of Arquillian -->
         <arquillian.cube.version>1.17.1</arquillian.cube.version>
@@ -89,9 +89,9 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>fabric8-maven-plugin</artifactId>
-                    <version>${fmp.version}</version>
+                    <groupId>org.eclipse.jkube</groupId>
+                    <artifactId>openshift-maven-plugin</artifactId>
+                    <version>${jkube.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

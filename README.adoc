@@ -59,7 +59,7 @@ $ cd my_openshift/fuse-springboot-circuit-breaker-booster
 +
 [source,bash,options="nowrap",subs="attributes+"]
 ----
-$ mvn clean -DskipTests fabric8:deploy -Popenshift
+$ mvn clean -DskipTests oc:deploy -Popenshift
 ----
 
 . In your browser, navigate to the `MY_PROJECT_NAME` project in the OpenShift console.
