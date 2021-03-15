@@ -15,6 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <fuse.bom.version>7.8.0.fuse-sb2-780038-redhat-00001</fuse.bom.version>
+        <docker.image.version>1.9</docker.image.version>
     </properties>
 
     <dependencyManagement>
@@ -59,7 +60,7 @@
                 </plugin>
                 <plugin>
                     <groupId>org.jboss.redhat-fuse</groupId>
-                    <artifactId>fabric8-maven-plugin</artifactId>
+                    <artifactId>openshift-maven-plugin</artifactId>
                     <version>${fuse.bom.version}</version>
                 </plugin>
             </plugins>
