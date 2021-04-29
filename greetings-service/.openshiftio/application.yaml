@@ -92,7 +92,7 @@ objects:
     labels:
       app: fuse-circuit-breaker-mission-greetings-service
       group: com.redhat.fuse.boosters
-      provider: fabric8
+      provider: jkube
   spec:
     output:
       to:
@@ -144,7 +144,7 @@ objects:
     labels:
       expose: "true"
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: greetings-service
   spec:
@@ -155,14 +155,14 @@ objects:
       targetPort: 8080
     selector:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: greetings-service
   spec:
@@ -170,7 +170,7 @@ objects:
     revisionHistoryLimit: 2
     selector:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     strategy:
       rollingParams:
@@ -180,7 +180,7 @@ objects:
       metadata:
         labels:
           app: fuse-circuit-breaker-mission-greetings-service
-          provider: fabric8
+          provider: jkube
           group: com.redhat.fuse.boosters
       spec:
         volumes:
@@ -239,7 +239,7 @@ objects:
   metadata:
     labels:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: greetings-service
   spec:
