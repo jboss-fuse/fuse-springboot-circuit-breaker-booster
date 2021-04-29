@@ -69,7 +69,7 @@ objects:
     labels:
       app: fuse-circuit-breaker-mission-name-service
       group: com.redhat.fuse.boosters
-      provider: fabric8
+      provider: jkube
   spec:
     output:
       to:
@@ -121,7 +121,7 @@ objects:
     labels:
       expose: "true"
       app: fuse-circuit-breaker-mission-name-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: name-service
   spec:
@@ -132,14 +132,14 @@ objects:
       targetPort: 8080
     selector:
       app: fuse-circuit-breaker-mission-name-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
       app: fuse-circuit-breaker-mission-name-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: name-service
   spec:
@@ -147,7 +147,7 @@ objects:
     revisionHistoryLimit: 2
     selector:
       app: fuse-circuit-breaker-mission-name-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     strategy:
       rollingParams:
@@ -157,7 +157,7 @@ objects:
       metadata:
         labels:
           app: fuse-circuit-breaker-mission-name-service
-          provider: fabric8
+          provider: jkube
           group: com.redhat.fuse.boosters
       spec:
         containers:
