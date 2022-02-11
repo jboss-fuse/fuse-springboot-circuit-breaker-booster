@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.redhat.fuse.boosters</groupId>
         <artifactId>fuse-springboot-circuit-breaker-booster-parent</artifactId>
-        <version>7.0.0</version>
+        <version>7.0.0.fuse-sb2-7_10_1-00005</version>
     </parent>
 
     <artifactId>greetings-service</artifactId>
