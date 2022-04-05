@@ -96,7 +96,7 @@ $ oc new-project MY_PROJECT_NAME
 +
 [source,bash,options="nowrap",subs="attributes+"]
 ----
-$ oc import-image {image-name-version} --from=image-registry}{image-prefix}{image-name-version} --confirm
+$ oc import-image {image-name-version} --from={image-registry}{image-prefix}{image-name-version} --confirm
 ----
 
 . Build and deploy the project to the OpenShift cluster:
