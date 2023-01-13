@@ -14,11 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <fuse.bom.version>7.7.0.fuse-770012-redhat-00003</fuse.bom.version>
-
-        <!-- version of Arquillian -->
-        <arquillian.cube.version>1.17.1</arquillian.cube.version>
-        <arquillian.version>1.4.0.Final</arquillian.version>
+        <fuse.bom.version>7.11.1.fuse-sb2-7_11_1-00017-redhat-00002</fuse.bom.version>
+        <docker.image.version>registry.redhat.io/fuse7/fuse-java-openshift-rhel8:1.11</docker.image.version>
     </properties>
 
     <dependencyManagement>
@@ -29,13 +26,6 @@
                 <version>${fuse.bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.arquillian.cube</groupId>
-                <artifactId>arquillian-cube-bom</artifactId>
-                <version>${arquillian.cube.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -70,7 +60,7 @@
                 </plugin>
                 <plugin>
                     <groupId>org.jboss.redhat-fuse</groupId>
-                    <artifactId>fabric8-maven-plugin</artifactId>
+                    <artifactId>openshift-maven-plugin</artifactId>
                     <version>${fuse.bom.version}</version>
                 </plugin>
             </plugins>

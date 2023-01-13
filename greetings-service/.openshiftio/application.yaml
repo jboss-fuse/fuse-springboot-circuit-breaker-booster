@@ -48,20 +48,27 @@ objects:
   data:
     application.properties: |-
       server.port=8080
+      management.endpoints.web.base-path=/
+
       nameService.host=${NAME_SERVICE_SERVICE_HOST}
       nameService.port=${NAME_SERVICE_SERVICE_PORT}
+
       # configure hystrix
       # when we have more than 5 requests per 10 seconds that 50%+ fails
       # then open circuit and call fallback immediately
       camel.hystrix.circuit-breaker-request-volume-threshold=5
       camel.hystrix.circuit-breaker-error-threshold-percentage=50
       camel.hystrix.metrics-rolling-percentile-window-in-milliseconds=10000
+
+      # disable hystrix default mapping see com.redhat.fuse.boosters.cb.Application comments
+      camel.component.hystrix.mapping.enabled=false
+
       # hystrix logging
       #logging.level.org.apache.camel.component.hystrix.processor=DEBUG
-      # disable all management enpoints except health
-      endpoints.enabled = false
-      endpoints.health.enabled = true
+
+      # disable health defaults
       management.health.defaults.enabled=false
+      
       camel.health.enabled=false
       camel.health.indicator.enabled=true
 - apiVersion: v1
@@ -92,7 +99,7 @@ objects:
     labels:
       app: fuse-circuit-breaker-mission-greetings-service
       group: com.redhat.fuse.boosters
-      provider: fabric8
+      provider: jkube
   spec:
     output:
       to:
@@ -144,7 +151,7 @@ objects:
     labels:
       expose: "true"
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: greetings-service
   spec:
@@ -155,14 +162,14 @@ objects:
       targetPort: 8080
     selector:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: greetings-service
   spec:
@@ -170,7 +177,7 @@ objects:
     revisionHistoryLimit: 2
     selector:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     strategy:
       rollingParams:
@@ -180,7 +187,7 @@ objects:
       metadata:
         labels:
           app: fuse-circuit-breaker-mission-greetings-service
-          provider: fabric8
+          provider: jkube
           group: com.redhat.fuse.boosters
       spec:
         volumes:
@@ -197,7 +204,7 @@ objects:
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
-              path: /health
+              path: /actuator/health
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 180
@@ -218,7 +225,7 @@ objects:
             protocol: TCP
           readinessProbe:
             httpGet:
-              path: /health
+              path: /actuator/health
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 10
@@ -239,7 +246,7 @@ objects:
   metadata:
     labels:
       app: fuse-circuit-breaker-mission-greetings-service
-      provider: fabric8
+      provider: jkube
       group: com.redhat.fuse.boosters
     name: greetings-service
   spec:
