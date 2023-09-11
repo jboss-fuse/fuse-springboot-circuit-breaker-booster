@@ -1,7 +1,7 @@
 :launchURL: https://developers.redhat.com/launch
-:image-registry: registry.access.redhat.com
+:image-registry: registry.redhat.io
 :image-prefix: /fuse7/
-:image-name-version: fuse-java-openshift-rhel8:1.11
+:image-name-version: fuse-java-openshift-rhel8:1.12
 
 = Circuit Breaker - Fuse Booster
 
